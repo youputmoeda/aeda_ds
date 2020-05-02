@@ -83,12 +83,12 @@ class single_linked_list(List):
         self.num_elements += 1
 
     # Inserts the specified element at the last position in the list.
-    def insert_last(self, element):                                 # O(n)
-        new_node = SingleListNode(element, None)
-        if self.is_empty():
+    def insert_last(self, element):                                 # O(1)
+        new_node = SingleListNode(element, None)            # vai me dar o address que eu quero
+        if not self.head:                                   # Se a lista estiver vazia, o self.head = elemento
             self.head = new_node
         else:
-            self.tail.next = new_node
+            self.tail.next = new_node                       # cria-se a posição a seguir ao tail.  
         self.tail = new_node
         self.num_elements += 1
 
@@ -139,21 +139,21 @@ llist.insert_first('A')
 llist.insert_last('D')
 
 # check if list is empty:
-# print(llist.is_empty())
+print(llist.is_empty())
 
 # check size:
-# print(llist.size())
+print(llist.size())
 
 # get the first element of the list:
-# print(llist.get_first())
+print(llist.get_first())
 
 # get the last element of the list:
-# print(llist.get_last())
+print(llist.get_last())
 
 # get the element of the position of the list:
-# print(f'position: {1}, element: {llist.get(1)}')
-# print(f'position: {2}, element: {llist.get(2)}')
-# print(f'position: {0}, element: {llist.get(0)}')
+print(f'position: {1}, element: {llist.get(1)}')
+print(f'position: {2}, element: {llist.get(2)}')
+print(f'position: {0}, element: {llist.get(0)}')
 
 # imprimir a lista
 llist.print_it()
