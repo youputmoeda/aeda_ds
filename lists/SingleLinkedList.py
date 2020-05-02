@@ -26,45 +26,36 @@ class single_linked_list(List):
     # Returns the first element of the list.
     # Throws EmptyListException.
     def get_first(self):                                            # O(1)
-        try:
             if not self.head:
-                raise Exception
+                # raise EmptyListException
+                pass
             else:
                 return self.head.get_element()
-        except:
-            # EmptyListException
-            pass
 
 
     # Returns the last element of the list.
     # Throws EmptyListException.
-    def get_last(self):                                             # O(1)
-        try:
+    def get_last(self):                                             # O(1)\
             if not self.head:
-                raise Exception
+                # raise EmptyListException
+                pass
             else:
                 return self.tail.get_element()
-        except:
-            # EmptyListException
-            pass
 
 
     # Returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
     def get(self, position):                                        # O(n)
         index = 0
-        cur_node = self.head
-        try:
+        cur_node = self.head\
             if position<-1 or position>self.size():
-                raise Exception
+                # raise InvalidPositionException
+                pass
             else:
                 while position > index:
                     cur_node = cur_node.next
                     index += 1
                 return cur_node.get_element()
-        except:
-            # InvalidPositionException
-            pass
 
 
     # Returns the position in the list of the
@@ -81,6 +72,7 @@ class single_linked_list(List):
             self.tail = new_node
         self.head = new_node
         self.num_elements += 1
+
 
     # Inserts the specified element at the last position in the list.
     def insert_last(self, element):                                 # O(1)
@@ -102,11 +94,23 @@ class single_linked_list(List):
 
     # Removes and returns the element at the first position in the list.
     # Throws EmptyListException.
-    def remove_first(self): pass
+    def remove_first(self): \
+            if not self.head:
+                # raise EmptyListException
+                pass
+            else:
+                self.head = self.head.next
+                self.num_elements -= 1
+
 
     # Removes and returns the element at the last position in the list.
     # Throws EmptyListException.
-    def remove_last(self): pass
+    def remove_last(self): \
+            if not self.head:
+                # raise EmptyListException
+                pass
+            else:
+                pass
     
     # Removes and returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
@@ -119,6 +123,9 @@ class single_linked_list(List):
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self): pass
 
+
+
+
     def print_it(self):
         cur_node = self.head
         print(f'Head: {self.head.get_element()}')
@@ -126,6 +133,16 @@ class single_linked_list(List):
         while cur_node:
             print(cur_node.get_element())
             cur_node = cur_node.next
+
+
+
+
+
+
+
+
+
+
 
 # criar a lista:
 llist = single_linked_list()
@@ -139,21 +156,27 @@ llist.insert_first('A')
 llist.insert_last('D')
 
 # check if list is empty:
-print(llist.is_empty())
+# print(llist.is_empty())
 
 # check size:
-print(llist.size())
+# print(llist.size())
 
 # get the first element of the list:
-print(llist.get_first())
+# print(llist.get_first())
 
 # get the last element of the list:
-print(llist.get_last())
+# print(llist.get_last())
 
 # get the element of the position of the list:
-print(f'position: {1}, element: {llist.get(1)}')
-print(f'position: {2}, element: {llist.get(2)}')
-print(f'position: {0}, element: {llist.get(0)}')
+# print(f'position: {1}, element: {llist.get(1)}')
+# print(f'position: {2}, element: {llist.get(2)}')
+# print(f'position: {0}, element: {llist.get(0)}')
+
+# remove the first element of the list:
+llist.remove_first()
+
+# remove last element of the list:
+llist.remove_last()
 
 # imprimir a lista
 llist.print_it()
