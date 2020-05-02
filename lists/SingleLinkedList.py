@@ -1,5 +1,8 @@
 from list import List
 from nodes import SingleListNode
+# from exceptions import EmptyListException
+# from exceptions import InvalidPositionException
+# from exceptions import NoSuchElementException
 
 
 class single_linked_list(List):
@@ -14,9 +17,11 @@ class single_linked_list(List):
         if not self.head:
             return True
 
+
     # Returns the number of elements in the list.
     def size(self): 
         return self.num_elements
+
 
     # Returns the first element of the list.
     # Throws EmptyListException.
@@ -27,8 +32,9 @@ class single_linked_list(List):
             else:
                 return self.head.get_element()
         except:
-            pass
             # EmptyListException
+            pass
+
 
     # Returns the last element of the list.
     # Throws EmptyListException.
@@ -39,12 +45,26 @@ class single_linked_list(List):
             else:
                 return self.tail.get_element()
         except:
-            pass
             # EmptyListException
+            pass
+
 
     # Returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
-    def get(self, position): pass
+    def get(self, position): 
+        index = 0
+        cur_node = self.head
+        try:
+            if position<-1 or position>self.size():
+                raise Exception
+            else:
+                while position > index:
+                    cur_node = cur_node.next
+                    index += 1
+                return cur_node.get_element()
+        except:
+            # InvalidPositionException
+            pass
 
     # Returns the position in the list of the
     # first occurrence of the specified element,
@@ -116,7 +136,12 @@ llist.insert_first('A')
 # print(llist.get_first())
 
 # get the last element of the list:
-print(llist.get_last())
+# print(llist.get_last())
+
+# get the element of the position of the list:
+# print(f'position: {1}, element: {llist.get(1)}')
+# print(f'position: {2}, element: {llist.get(2)}')
+# print(f'position: {0}, element: {llist.get(0)}')
 
 # imprimir a lista
-llist.print_it()
+# llist.print_it()
