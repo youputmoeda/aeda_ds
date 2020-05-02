@@ -77,16 +77,14 @@ class SinglyLinkedList(List):
     # Removes and returns the element at the first position in the list.
     # Throws EmptyListException.
     def remove_first(self, element):
-        head.remove(element)
-        return head
+        if self.head != None:
+            self.remove(0)
     
     # Removes and returns the element at the last position in the list.
     # Throws EmptyListException.
     def remove_last(self):
-        if self.
-        pass
-        """ tail.remove(element)
-        return tail """
+        if self.head != None:
+            self.remove(len(self))
 
     # Removes and returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
@@ -95,7 +93,11 @@ class SinglyLinkedList(List):
 
     
     # Removes all elements from the list.
-    def make_empty(self): pass
+    def make_empty(self):
+        while self.num_elements != 0:
+            self.remove(0)
+            self.num_elements -= 1
+            return self.num_elements
 
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self): pass
