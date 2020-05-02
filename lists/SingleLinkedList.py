@@ -72,6 +72,7 @@ class single_linked_list(List):
             index += 1
         return -1
 
+
     # Inserts the specified element at the first position in the list.
     def insert_first(self, element):                                # O(1)
         new_node = SingleListNode(element, self.head)
@@ -99,6 +100,7 @@ class single_linked_list(List):
     # If the specified position is size(), insert corresponds to insertLast.
     # Throws InvalidPositionException.
     def insert(self, element, position): pass
+
 
     # Removes and returns the element at the first position in the list.
     # Throws EmptyListException.
@@ -128,16 +130,19 @@ class single_linked_list(List):
             self.tail.set_next = None
             self.num_elements -= 1
     
+
     # Removes and returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
     # Throws InvalidPositionException.
     def remove(self, position): pass
     
+
     # Removes all elements from the list.
     def make_empty(self):                                           # O(1)
         self.head = None
         self.tail = None
         self.num_elements = 0
+
 
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self): pass
