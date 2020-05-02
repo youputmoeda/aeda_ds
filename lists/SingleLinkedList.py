@@ -35,7 +35,7 @@ class single_linked_list(List):
 
     # Returns the last element of the list.
     # Throws EmptyListException.
-    def get_last(self):                                             # O(1)\
+    def get_last(self):                                             # O(1)
         if not self.head:
             # raise EmptyListException
             pass
@@ -94,7 +94,7 @@ class single_linked_list(List):
 
     # Removes and returns the element at the first position in the list.
     # Throws EmptyListException.
-    def remove_first(self): 
+    def remove_first(self):                                         # O(1)
         if not self.head:
             # raise EmptyListException
             pass
@@ -105,12 +105,20 @@ class single_linked_list(List):
 
     # Removes and returns the element at the last position in the list.
     # Throws EmptyListException.
-    def remove_last(self): 
+    def remove_last(self):                                          # O(n)
         if not self.head:
             # raise EmptyListException
             pass
         else:
-            pass
+            new_node = self.head
+            node_remove = self.tail
+            previous_node = None
+            while new_node.next:
+                previous_node = new_node
+                new_node = new_node.next
+            self.tail = previous_node
+            self.tail.set_next = None
+            self.num_elements -= 1
     
     # Removes and returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
@@ -118,7 +126,7 @@ class single_linked_list(List):
     def remove(self, position): pass
     
     # Removes all elements from the list.
-    def make_empty(self): 
+    def make_empty(self):                                           # O(1)
         self.head = None
         self.tail = None
         self.num_elements = 0
@@ -160,7 +168,7 @@ llist.insert_first('A')
 llist.insert_last('D')
 
 # check size:
-print(llist.size())
+# print(llist.size())
 
 # get the first element of the list:
 print(llist.get_first())
@@ -169,12 +177,12 @@ print(llist.get_first())
 print(llist.get_last())
 
 # get the element of the position of the list:
-print(f'position: {1}, element: {llist.get(1)}')
-print(f'position: {2}, element: {llist.get(2)}')
-print(f'position: {0}, element: {llist.get(0)}')
+# print(f'position: {1}, element: {llist.get(1)}')
+# print(f'position: {2}, element: {llist.get(2)}')
+# print(f'position: {0}, element: {llist.get(0)}')
 
 # remove the first element of the list:
-llist.remove_first()
+# llist.remove_first()
 
 # remove last element of the list: #ERROR
 llist.remove_last()
@@ -183,7 +191,7 @@ llist.remove_last()
 llist.print_it()
 
 # Make list empty:
-llist.make_empty()
+# llist.make_empty()
 
 # check if list is empty:
-print(llist.is_empty())
+# print(llist.is_empty())
