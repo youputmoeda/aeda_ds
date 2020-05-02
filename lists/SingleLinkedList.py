@@ -4,11 +4,19 @@ from nodes import SingleListNode
 
 class single_linked_list(List):
     
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.num_elements = 0
+    
     # Returns true iff the list contains no elements.
-    def is_empty(self): pass
+    def is_empty(self): 
+        if not self.head:
+            return True
 
     # Returns the number of elements in the list.
-    def size(self): pass
+    def size(self): 
+        return self.num_elements
 
     # Returns the first element of the list.
     # Throws EmptyListException.
@@ -59,3 +67,22 @@ class single_linked_list(List):
 
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self): pass
+
+    def print_it(self):
+        cur_node = self.head
+        while cur_node:
+            print(cur_node.get_element())
+            cur_node.next
+
+
+# criar a lista:
+llist = single_linked_list()
+
+# check if list is empty:
+print(llist.is_empty())
+
+# check size:
+print(llist.size())
+
+# imprimir a lista
+# llist.print_it()
