@@ -1,9 +1,9 @@
 class EmptyListException(Exception):
-    pass
+    print('The list is empty')
 
 class InvalidPositionException(Exception):
-    pass
+    print('Invalid position')
 
 class NoSuchElementException(Exception):
-    pass
+    print('There is no such element')
     
