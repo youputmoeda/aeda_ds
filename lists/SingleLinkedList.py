@@ -62,7 +62,15 @@ class single_linked_list(List):
     # first occurrence of the specified element,
     # or -1 if the specified element does not
     # occur in the list.
-    def find(self, element): pass
+    def find(self, element):                                        # O(n)
+        cur_node = self.head
+        index = 0
+        while cur_node:
+            if element == cur_node.get_element():
+                return index
+            cur_node = cur_node.next
+            index += 1
+        return -1
 
     # Inserts the specified element at the first position in the list.
     def insert_first(self, element):                                # O(1)
@@ -171,15 +179,21 @@ llist.insert_last('D')
 # print(llist.size())
 
 # get the first element of the list:
-print(llist.get_first())
+# print(llist.get_first())
 
 # get the last element of the list:
-print(llist.get_last())
+# print(llist.get_last())
 
 # get the element of the position of the list:
 # print(f'position: {1}, element: {llist.get(1)}')
 # print(f'position: {2}, element: {llist.get(2)}')
 # print(f'position: {0}, element: {llist.get(0)}')
+
+# find elements in the list:
+print(llist.find('A'))
+print(llist.find('B'))
+print(llist.find('C'))
+print(llist.find('W'))
 
 # remove the first element of the list:
 # llist.remove_first()
