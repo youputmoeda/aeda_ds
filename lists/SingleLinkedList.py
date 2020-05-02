@@ -13,19 +13,19 @@ class single_linked_list(List):
         self.num_elements = 0
     
     # Returns true iff the list contains no elements.
-    def is_empty(self): 
+    def is_empty(self):                                             # O(1)
         if not self.head:
             return True
 
 
     # Returns the number of elements in the list.
-    def size(self): 
+    def size(self):                                                 # O(1)
         return self.num_elements
 
 
     # Returns the first element of the list.
     # Throws EmptyListException.
-    def get_first(self): 
+    def get_first(self):                                            # O(1)
         try:
             if not self.head:
                 raise Exception
@@ -38,7 +38,7 @@ class single_linked_list(List):
 
     # Returns the last element of the list.
     # Throws EmptyListException.
-    def get_last(self): 
+def get_last(self):                                                 # O(1)
         try:
             if not self.head:
                 raise Exception
@@ -51,7 +51,7 @@ class single_linked_list(List):
 
     # Returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
-    def get(self, position): 
+    def get(self, position):                                        # O(n)
         index = 0
         cur_node = self.head
         try:
