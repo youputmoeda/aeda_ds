@@ -38,7 +38,7 @@ class single_linked_list(List):
 
     # Returns the last element of the list.
     # Throws EmptyListException.
-def get_last(self):                                                 # O(1)
+    def get_last(self):                                               # O(1)
         try:
             if not self.head:
                 raise Exception
