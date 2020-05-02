@@ -1,8 +1,8 @@
 class EmptyListException(Exception):
-    pass
+    print("Não existe elementos na lista.")
 
 class InvalidPositionException(Exception):
-    pass
+    print("Posição invalida")
 
 class NoSuchElementException(Exception):
     pass
