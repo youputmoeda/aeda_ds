@@ -32,7 +32,15 @@ class single_linked_list(List):
 
     # Returns the last element of the list.
     # Throws EmptyListException.
-    def get_last(self): pass
+    def get_last(self): 
+        try:
+            if not self.head:
+                raise Exception
+            else:
+                return self.tail.get_element()
+        except:
+            pass
+            # EmptyListException
 
     # Returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
@@ -105,7 +113,10 @@ llist.insert_first('A')
 # print(llist.size())
 
 # get the first element of the list:
-print(llist.get_first())
+# print(llist.get_first())
+
+# get the last element of the list:
+print(llist.get_last())
 
 # imprimir a lista
 llist.print_it()
