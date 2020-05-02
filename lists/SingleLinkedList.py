@@ -74,7 +74,7 @@ class single_linked_list(List):
     def find(self, element): pass
 
     # Inserts the specified element at the first position in the list.
-    def insert_first(self, element): 
+    def insert_first(self, element):                                # O(1)
         new_node = SingleListNode(element, self.head)
         # self.head = self.head.next
         if not self.head: # ou seja , se a lista estiver vazia
@@ -83,7 +83,15 @@ class single_linked_list(List):
         self.num_elements += 1
 
     # Inserts the specified element at the last position in the list.
-    def insert_last(self, element): pass
+    def insert_last(self, element):                                 # O(n)
+        new_node = SingleListNode(element, None)
+        if self.is_empty():
+            self.head = new_node
+        else:
+            self.tail.next = new_node
+        self.tail = new_node
+        self.num_elements += 1
+
 
     # Inserts the specified element at the specified position in the list.
     # Range of valid positions: 0, ..., size().
@@ -127,6 +135,9 @@ llist.insert_first('C')
 llist.insert_first('B')
 llist.insert_first('A')
 
+# inserir elementos no fim da lista:
+llist.insert_last('D')
+
 # check if list is empty:
 # print(llist.is_empty())
 
@@ -145,4 +156,4 @@ llist.insert_first('A')
 # print(f'position: {0}, element: {llist.get(0)}')
 
 # imprimir a lista
-# llist.print_it()
+llist.print_it()
