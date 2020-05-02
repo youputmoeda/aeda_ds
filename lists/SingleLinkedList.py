@@ -20,7 +20,15 @@ class single_linked_list(List):
 
     # Returns the first element of the list.
     # Throws EmptyListException.
-    def get_first(self): pass
+    def get_first(self): 
+        try:
+            if not self.head:
+                raise Exception
+            else:
+                return self.head.get_element()
+        except:
+            pass
+            # EmptyListException
 
     # Returns the last element of the list.
     # Throws EmptyListException.
@@ -37,7 +45,13 @@ class single_linked_list(List):
     def find(self, element): pass
 
     # Inserts the specified element at the first position in the list.
-    def insert_first(self, element): pass
+    def insert_first(self, element): 
+        new_node = SingleListNode(element, self.head)
+        # self.head = self.head.next
+        if not self.head: # ou seja , se a lista estiver vazia
+            self.tail = new_node
+        self.head = new_node
+        self.num_elements += 1
 
     # Inserts the specified element at the last position in the list.
     def insert_last(self, element): pass
@@ -70,19 +84,28 @@ class single_linked_list(List):
 
     def print_it(self):
         cur_node = self.head
+        print(f'Head: {self.head.get_element()}')
+        print(f'Tail: {self.tail.get_element()}')
         while cur_node:
             print(cur_node.get_element())
-            cur_node.next
-
+            cur_node = cur_node.next
 
 # criar a lista:
 llist = single_linked_list()
 
+# inserir elementos no inicio da lista:
+llist.insert_first('C')
+llist.insert_first('B')
+llist.insert_first('A')
+
 # check if list is empty:
-print(llist.is_empty())
+# print(llist.is_empty())
 
 # check size:
-print(llist.size())
+# print(llist.size())
+
+# get the first element of the list:
+print(llist.get_first())
 
 # imprimir a lista
-# llist.print_it()
+llist.print_it()
