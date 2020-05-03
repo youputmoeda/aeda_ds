@@ -118,7 +118,7 @@ class single_linked_list(List):
                     new_node.next = SingleListNode(element, new_node.next)
                     self.num_elements += 1
                     break
-                
+
 
 
     # Removes and returns the element at the first position in the list.
@@ -128,8 +128,10 @@ class single_linked_list(List):
             # raise EmptyListException
             pass
         else:
+            node_to_remove = self.head
             self.head = self.head.next
             self.num_elements -= 1
+            return node_to_remove
 
 
     # Removes and returns the element at the last position in the list.
@@ -139,15 +141,27 @@ class single_linked_list(List):
             # raise EmptyListException
             pass
         else:
-            pass
+            # find second last node e fazer com que esse node se torne no último elemento da minha lista
+            node_second_last = self.head
+            while node_second_last.next.next != None:
+                node_second_last = node_second_last.next
+            self.tail = node_second_last
+            self.tail.set_next(None)
             self.num_elements -= 1
     
 
     # Removes and returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
     # Throws InvalidPositionException.
-    def remove(self, position): pass
-    
+    def remove(self, position): 
+        if not self.head:
+            # raise EmptyListException
+            pass
+        else:
+            pass
+            self.num_elements -= 1
+            # return 
+
 
     # Removes all elements from the list.
     def make_empty(self):                                           # O(1)
@@ -197,7 +211,7 @@ llist.insert('E', 4)
 llist.insert('W', 9)
 
 # check size:
-print(llist.size())
+# print(llist.size())
 
 # get the first element of the list:
 # print(llist.get_first())
@@ -220,13 +234,13 @@ print(llist.size())
 # llist.remove_first()
 
 # remove last element of the list: #ERROR
-# llist.remove_last()
+llist.remove_last()
 
 # imprimir a lista
 llist.print_it()
 
 # Make list empty:
-llist.make_empty()
+# llist.make_empty()
 
 # check if list is empty:
-print(llist.is_empty())
+# print(llist.is_empty())
