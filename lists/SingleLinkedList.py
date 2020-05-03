@@ -29,6 +29,7 @@ class single_linked_list(List):
     def get_first(self):                                            # O(1)
         if not self.head:
             # raise EmptyListException
+            Exceptions.EmptyListException()
             pass
         else:
             return self.head.get_element()
@@ -128,10 +129,10 @@ class single_linked_list(List):
             # raise EmptyListException
             pass
         else:
-            node_to_remove = self.head
+            old_head = self.head
             self.head = self.head.next
             self.num_elements -= 1
-            return node_to_remove
+            return old_head.get_element()
 
 
     # Removes and returns the element at the last position in the list.
@@ -145,9 +146,11 @@ class single_linked_list(List):
             node_second_last = self.head
             while node_second_last.next.next != None:
                 node_second_last = node_second_last.next
+            old_tail = self.tail
             self.tail = node_second_last
             self.tail.set_next(None)
             self.num_elements -= 1
+            return old_tail.get_element()
     
 
     # Removes and returns the element at the specified position in the list.
@@ -157,10 +160,32 @@ class single_linked_list(List):
         if not self.head:
             # raise EmptyListException
             pass
+        elif position == 0:
+            self.remove_first()
+        elif position == self.num_elements - 1:
+            self.remove_last()
         else:
-            pass
+            prev_node = self.head
+            foll_node = self.head
+            old_node = self.head
+            index = 0
+            while prev_node.next:
+                if index == position - 1:
+                    index = 0
+                    old_node = prev_node.next
+                    break
+                prev_node = prev_node.next
+                index += 1
+
+            while foll_node.next:
+                if index == position + 1:
+                    break
+                foll_node = foll_node.next
+                index += 1
+            
+            prev_node.set_next(foll_node)
             self.num_elements -= 1
-            # return 
+            return old_node.get_element()
 
 
     # Removes all elements from the list.
@@ -230,11 +255,18 @@ llist.insert('W', 9)
 # print(llist.find('C'))
 # print(llist.find('W'))
 
-# remove the first element of the list:
-# llist.remove_first()
 
-# remove last element of the list: #ERROR
-llist.remove_last()
+# imprimir a lista
+# llist.print_it()
+
+# remove the first element of the list:
+# print(f'Primiero elemento foi removido: {llist.remove_first()}')
+
+# remove last element of the list:
+# print(f'Último elemento foi removido: {llist.remove_last()}')
+
+# remove o elemento que está na posicao indicada:
+print(f'Elemento removido: {llist.remove(3)}')   
 
 # imprimir a lista
 llist.print_it()
