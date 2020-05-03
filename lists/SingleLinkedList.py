@@ -99,7 +99,22 @@ class single_linked_list(List):
     # If the specified position is 0, insert corresponds to insertFirst.
     # If the specified position is size(), insert corresponds to insertLast.
     # Throws InvalidPositionException.
-    def insert(self, element, position): pass
+    def insert(self, element, position):  
+        if position < 0 or position > self.size():
+            # raise InvalidPositionException
+            pass
+        elif element == self.head:
+            self.insert_first(element)
+        elif element == self.tail:
+            self.insert_last(element)
+        else:
+            index = 0
+            node_to_iterate = self.head
+            while node_to_iterate:
+                number += 1
+                if number == position:
+                    node_to_iterate.next = SingleListNode(element, node_to_iterate.next)
+            self.num_elements += 1
 
 
     # Removes and returns the element at the first position in the list.
@@ -120,14 +135,7 @@ class single_linked_list(List):
             # raise EmptyListException
             pass
         else:
-            new_node = self.head
-            node_remove = self.tail
-            previous_node = None
-            while new_node.next:
-                previous_node = new_node
-                new_node = new_node.next
-            self.tail = previous_node
-            self.tail.set_next = None
+            pass
             self.num_elements -= 1
     
 
@@ -174,11 +182,13 @@ llist = single_linked_list()
 
 # inserir elementos no inicio da lista:
 llist.insert_first('C')
-llist.insert_first('B')
 llist.insert_first('A')
 
 # inserir elementos no fim da lista:
 llist.insert_last('D')
+
+# inserir elementos numa posição expecífica da lista:
+print(llist.insert('B', 1))
 
 # check size:
 # print(llist.size())
@@ -187,12 +197,12 @@ llist.insert_last('D')
 # print(llist.get_first())
 
 # get the last element of the list:
-# print(llist.get_last())
+print(llist.get_last())
 
 # get the element of the position of the list:
-# print(f'position: {1}, element: {llist.get(1)}')
-# print(f'position: {2}, element: {llist.get(2)}')
-# print(f'position: {0}, element: {llist.get(0)}')
+print(f'position: {1}, element: {llist.get(1)}')
+print(f'position: {2}, element: {llist.get(2)}')
+print(f'position: {0}, element: {llist.get(0)}')
 
 # find elements in the list:
 print(llist.find('A'))
@@ -204,7 +214,7 @@ print(llist.find('W'))
 # llist.remove_first()
 
 # remove last element of the list: #ERROR
-llist.remove_last()
+# llist.remove_last()
 
 # imprimir a lista
 llist.print_it()

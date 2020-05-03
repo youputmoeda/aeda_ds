@@ -9,10 +9,10 @@ class SingleListNode:
     def get_next(self):
         return self.next
     
-    def set_element(self):
+    def set_element(self, element):
         self.element = element
     
-    def set_next(self):
+    def set_next(self, next):
         self.next = next
 
 class DoubleListNode(SingleListNode):
