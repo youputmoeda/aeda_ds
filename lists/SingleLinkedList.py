@@ -12,6 +12,7 @@ class single_linked_list(List):
         self.tail = None
         self.num_elements = 0
     
+
     # Returns true iff the list contains no elements.
     def is_empty(self):                                             # O(1)
         if not self.head:
@@ -99,22 +100,25 @@ class single_linked_list(List):
     # If the specified position is 0, insert corresponds to insertFirst.
     # If the specified position is size(), insert corresponds to insertLast.
     # Throws InvalidPositionException.
-    def insert(self, element, position):  
-        if position < 0 or position > self.size():
+    def insert(self, element, position): 
+        if position < 0 or position > self.size() + 1:
             # raise InvalidPositionException
             pass
-        elif element == self.head:
+        elif position == 0:
             self.insert_first(element)
-        elif element == self.tail:
+        elif position == self.num_elements:
             self.insert_last(element)
         else:
+            # get adress do next_node
+            new_node = self.head
             index = 0
-            node_to_iterate = self.head
-            while node_to_iterate:
-                number += 1
-                if number == position:
-                    node_to_iterate.next = SingleListNode(element, node_to_iterate.next)
-            self.num_elements += 1
+            while new_node:
+                index += 1 
+                if index == position:
+                    new_node.next = SingleListNode(element, new_node.next)
+                    self.num_elements += 1
+                    break
+                
 
 
     # Removes and returns the element at the first position in the list.
@@ -188,27 +192,29 @@ llist.insert_first('A')
 llist.insert_last('D')
 
 # inserir elementos numa posição expecífica da lista:
-print(llist.insert('B', 1))
+llist.insert('B', 1)
+llist.insert('E', 4)
+llist.insert('W', 9)
 
 # check size:
-# print(llist.size())
+print(llist.size())
 
 # get the first element of the list:
 # print(llist.get_first())
 
 # get the last element of the list:
-print(llist.get_last())
+# print(llist.get_last())
 
 # get the element of the position of the list:
-print(f'position: {1}, element: {llist.get(1)}')
-print(f'position: {2}, element: {llist.get(2)}')
-print(f'position: {0}, element: {llist.get(0)}')
+# print(f'position: {1}, element: {llist.get(1)}')
+# print(f'position: {2}, element: {llist.get(2)}')
+# print(f'position: {0}, element: {llist.get(0)}')
 
 # find elements in the list:
-print(llist.find('A'))
-print(llist.find('B'))
-print(llist.find('C'))
-print(llist.find('W'))
+# print(llist.find('A'))
+# print(llist.find('B'))
+# print(llist.find('C'))
+# print(llist.find('W'))
 
 # remove the first element of the list:
 # llist.remove_first()
@@ -220,7 +226,7 @@ print(llist.find('W'))
 llist.print_it()
 
 # Make list empty:
-# llist.make_empty()
+llist.make_empty()
 
 # check if list is empty:
-# print(llist.is_empty())
+print(llist.is_empty())
