@@ -55,7 +55,7 @@ class single_linked_list(List):
             pass
         else:
             while position > index:
-                cur_node = cur_node.next
+                cur_node = cur_node.next_node
                 index += 1
             return cur_node.get_element()
 
@@ -70,7 +70,7 @@ class single_linked_list(List):
         while cur_node:
             if element == cur_node.get_element():
                 return index
-            cur_node = cur_node.next
+            cur_node = cur_node.next_node
             index += 1
         return -1
 
@@ -78,7 +78,7 @@ class single_linked_list(List):
     # Inserts the specified element at the first position in the list.
     def insert_first(self, element):                                # O(1)
         new_node = SingleListNode(element, self.head)
-        # self.head = self.head.next
+        # self.head = self.head.next_node
         if not self.head: # ou seja , se a lista estiver vazia
             self.tail = new_node
         self.head = new_node
@@ -91,7 +91,7 @@ class single_linked_list(List):
         if not self.head:                                   # Se a lista estiver vazia, o self.head = elemento
             self.head = new_node
         else:
-            self.tail.next = new_node                       # cria-se a posição a seguir ao tail.  
+            self.tail.next_node = new_node                       # cria-se a posição a seguir ao tail.  
         self.tail = new_node
         self.num_elements += 1
 
@@ -110,13 +110,13 @@ class single_linked_list(List):
         elif position == self.num_elements:
             self.insert_last(element)
         else:
-            # get adress do next_node
+            # get adress do next_node_node
             new_node = self.head
             index = 0
             while new_node:
                 index += 1 
                 if index == position:
-                    new_node.next = SingleListNode(element, new_node.next)
+                    new_node.next_node = SingleListNode(element, new_node.next_node)
                     self.num_elements += 1
                     break
 
@@ -130,7 +130,7 @@ class single_linked_list(List):
             pass
         else:
             old_head = self.head
-            self.head = self.head.next
+            self.head = self.head.next_node
             self.num_elements -= 1
             return old_head.get_element()
 
@@ -144,8 +144,8 @@ class single_linked_list(List):
         else:
             # find second last node e fazer com que esse node se torne no último elemento da minha lista
             node_second_last = self.head
-            while node_second_last.next.next != None:
-                node_second_last = node_second_last.next
+            while node_second_last.next_node.next_node != None:
+                node_second_last = node_second_last.next_node
             old_tail = self.tail
             self.tail = node_second_last
             self.tail.set_next(None)
@@ -169,18 +169,18 @@ class single_linked_list(List):
             foll_node = self.head
             old_node = self.head
             index = 0
-            while prev_node.next:
+            while prev_node.next_node:
                 if index == position - 1:
                     index = 0
-                    old_node = prev_node.next
+                    old_node = prev_node.next_node
                     break
-                prev_node = prev_node.next
+                prev_node = prev_node.next_node
                 index += 1
 
-            while foll_node.next:
+            while foll_node.next_node:
                 if index == position + 1:
                     break
-                foll_node = foll_node.next
+                foll_node = foll_node.next_node
                 index += 1
             
             prev_node.set_next(foll_node)
@@ -208,7 +208,7 @@ class single_linked_list(List):
             print(f'Tail: {self.tail.get_element()}')
         while cur_node:
             print(cur_node.get_element())
-            cur_node = cur_node.next
+            cur_node = cur_node.next_node
 
 
 
@@ -234,6 +234,9 @@ llist.insert_last('D')
 llist.insert('B', 1)
 llist.insert('E', 4)
 llist.insert('W', 9)
+
+# imprimir a lista
+# llist.print_it()
 
 # check size:
 # print(llist.size())
@@ -266,7 +269,7 @@ llist.insert('W', 9)
 # print(f'Último elemento foi removido: {llist.remove_last()}')
 
 # remove o elemento que está na posicao indicada:
-print(f'Elemento removido: {llist.remove(3)}')   
+# print(f'Elemento removido: {llist.remove(1)}')   
 
 # imprimir a lista
 llist.print_it()
