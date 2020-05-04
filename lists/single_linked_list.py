@@ -1,6 +1,6 @@
 from list import List
 from nodes import SingleListNode
-import tad_iterator 
+import single_linked_list_iterator as slli
 from exceptions import *
 
 class single_linked_list(List):
@@ -173,7 +173,7 @@ class single_linked_list(List):
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self):
         # return single_linked_list.iterator(self)
-        iterator = tad_iterator.Iterator(self.head) 
+        iterator = slli.Iterator(self.head) 
         for _ in range(self.size()):
             return iterator.next()
 
@@ -204,33 +204,35 @@ llist.print_list()
 
 # check size:
 print(llist.size())
-
-# get the first element of the list:
-print(llist.get_first())
-# get the last element of the list:
-print(llist.get_last())
-# get the element of the position of the list:
-print(f'position: {1}, element: {llist.get(1)}')
-print(f'position: {2}, element: {llist.get(2)}')
-print(f'position: {0}, element: {llist.get(0)}')
-#find elements in the list:
-print(llist.find('A'))
-print(llist.find('B'))
-print(llist.find('C'))
-print(llist.find('W'))
-# imprimir a lista
-llist.print_list()
-# remove the first element of the list:
-print(f'Primeiro elemento foi removido: {llist.remove_first()}')
-#remove last element of the list:
-print(f'Último elemento foi removido: {llist.remove_last()}')
-llist.print_list()
 print(llist.iterator())
+print(llist.iterator())
+# print(llist.iterator())
+# print(llist.iterator())
+# get the first element of the list:
+#print(llist.get_first())
+# get the last element of the list:
+#print(llist.get_last())
+# get the element of the position of the list:
+#print(f'position: {1}, element: {llist.get(1)}')
+#print(f'position: {2}, element: {llist.get(2)}')
+#print(f'position: {0}, element: {llist.get(0)}')
+#find elements in the list:
+#print(llist.find('A'))
+#print(llist.find('B'))
+#print(llist.find('C'))
+#print(llist.find('W'))
+# imprimir a lista
+#llist.print_list()
+# remove the first element of the list:
+#print(f'Primeiro elemento foi removido: {llist.remove_first()}')
+#remove last element of the list:
+#print(f'Último elemento foi removido: {llist.remove_last()}')
+#llist.print_list()
+
 # remove o elemento que está na posicao indicada:
-print(f'Elemento removido: {llist.remove(3)}')   
-print(f'Elemento removido: {llist.remove(1)}')   
+#print(f'Elemento removido: {llist.remove(3)}')   
+#print(f'Elemento removido: {llist.remove(1)}')   
 
 # imprimir a lista
-llist.print_list()
+#llist.print_list()
 #if __name__=='__main__':
-    
