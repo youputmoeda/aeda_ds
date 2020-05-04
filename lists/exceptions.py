@@ -5,5 +5,5 @@ class InvalidPositionException(Exception):
     print("Posição invalida")
 
 class NoSuchElementException(Exception):
-    pass
+    print("Não existe o elemento pedido")
     
