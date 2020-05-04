@@ -238,3 +238,5 @@ print(f'Elemento removido: {llist.remove(1)}')
 
 # imprimir a lista
 llist.print_list()
+#sif __name__=='__main__':
+    
