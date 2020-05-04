@@ -1,22 +1,23 @@
 from list import List
 from nodes import SingleListNode
+import tad_iterator 
+from exceptions import *
 
 class single_linked_list(List):
-    # Returns true iff the list contains no elements.
+   
     def __init__(self):
         self.head = None
         self.tail = None
         self.num_elements = 0
-
+    # Returns true iff the list contains no elements.
     def is_empty(self):
         if self.head is None:
             return True
-        return False
+        return False        
 
     # Returns the number of elements in the list.
     def size(self):
         return self.num_elements  
-
 
     # Returns the first element of the list.
     # Throws EmptyListException.
@@ -42,7 +43,6 @@ class single_linked_list(List):
         except:
             print('EmptyListException')
     
-    
     # Returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
     def get(self, position):
@@ -64,19 +64,18 @@ class single_linked_list(List):
         node_to_iterate = self.head
         while node_to_iterate is not None:
             if node_to_iterate.get_element() == element:
-              return position
+                return position
             else:
                 node_to_iterate = node_to_iterate.next_node
                 position += 1
-            return -1
+        return -1
               
-
     # Inserts the specified element at the first position in the list.
     def insert_first(self, element):                            # O(1)
         node = SingleListNode(element, self.head)
         self.head = node  
         if self.tail is None:
-            self.head = self.tail
+            self.tail = node
         self.num_elements += 1 
 
     # Inserts the specified element at the last position in the list.
@@ -122,61 +121,50 @@ class single_linked_list(List):
             node_to_remove = self.head
             self.head = node_to_remove.next_node
         self.num_elements -= 1
+        return node_to_remove.get_element()
 
     # Removes and returns the element at the last position in the list.
     # Throws EmptyListException.
     def remove_last(self):
-        try:
-            if not self.head:
-                raise Exception
-            else:
-                node_to_iterate = self.head
-                node_to_remove = self.tail
-                previous_node = None
-                while node_to_iterate.next_node:
-                    previous_node = node_to_iterate
-                    node_to_iterate = node_to_iterate.next_node
+        if not self.head:
+            # raise EmptyListException
+            pass
+        else:
+            # find second last node e fazer com que esse node se torne no último elemento da minha lista
+            node_second_last = self.head
+            while node_second_last.next_node.next_node != None:
+                node_second_last = node_second_last.next_node
+            old_tail = self.tail
+            self.tail = node_second_last
+            self.tail.set_next(None)
+            self.num_elements -= 1
+            return old_tail.get_element()
 
-                previous_node = self.tail
-                return node_to_iterate.get_element()
-        except:
-            print("EmptyListException")
-    
     # Removes and returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
     # Throws InvalidPositionException.
     def remove(self, position):
-        if not self.head:
-            # raise EmptyListException
-            pass
-        elif position == 0:
-            self.remove_first()
-        elif position == self.num_elements - 1:
-            self.remove_last()
-        else:
-            prev_node = self.head
-            foll_node = self.head
-            old_node = self.head
-            index = 0
-            while prev_node.next_node:
-                if index == position - 1:
-                    index = 0
-                    old_node = prev_node.next_node
-                    break
-                prev_node = prev_node.next_node
-                index += 1
-
-            while foll_node.next_node:
-                if index == position + 1:
-                    break
-                foll_node = foll_node.next_node
-                index += 1
-
-            prev_node.set_next(foll_node)
-            self.num_elements -= 1
-            return old_node.get_element()
-    
-    # Removes all elements from the list.
+        number = 0
+        try:
+            if position < 0 or position>=self.size():
+                raise Exception
+            else:
+                node_to_iterate = self.head
+                previous_node = None
+                while node_to_iterate:
+                    if number == position:
+                        node_to_remove = node_to_iterate
+                        previous_node.set_next(node_to_remove.next_node)
+                        self.number_elements -= 1
+                        return node_to_remove.get_element()
+                    else:
+                        previous_node = node_to_iterate
+                        node_to_iterate = node_to_iterate.next_node
+                        number += 1
+        except:
+            print("InvalidPositionException")
+ 
+    # # Removes all elements from the list.
     def make_empty(self):
         self.head = None
         self.tail = None
@@ -184,7 +172,12 @@ class single_linked_list(List):
 
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self):
-        return single_linked_list.iterator(self)
+        # return single_linked_list.iterator(self)
+        iterator = tad_iterator.Iterator(self.head) 
+        for _ in range(self.size()):
+            return iterator.next()
+
+
 
     def print_list(self):
         current_node = self.head
@@ -218,7 +211,7 @@ print(llist.get_first())
 print(llist.get_last())
 # get the element of the position of the list:
 print(f'position: {1}, element: {llist.get(1)}')
-#print(f'position: {2}, element: {llist.get(2)}')
+print(f'position: {2}, element: {llist.get(2)}')
 print(f'position: {0}, element: {llist.get(0)}')
 #find elements in the list:
 print(llist.find('A'))
@@ -228,15 +221,16 @@ print(llist.find('W'))
 # imprimir a lista
 llist.print_list()
 # remove the first element of the list:
-print(f'Primiero elemento foi removido: {llist.remove_first()}')
+print(f'Primeiro elemento foi removido: {llist.remove_first()}')
 #remove last element of the list:
 print(f'Último elemento foi removido: {llist.remove_last()}')
-
+llist.print_list()
+print(llist.iterator())
 # remove o elemento que está na posicao indicada:
 print(f'Elemento removido: {llist.remove(3)}')   
 print(f'Elemento removido: {llist.remove(1)}')   
 
 # imprimir a lista
 llist.print_list()
-#sif __name__=='__main__':
+#if __name__=='__main__':
     
