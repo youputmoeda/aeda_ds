@@ -1,4 +1,4 @@
-class SingleListNode:
+class SinglyListNode:
     def __init__(self, element, next_node):
         self.element = element
         self.next_node = next_node
@@ -15,9 +15,9 @@ class SingleListNode:
     def set_next(self, next_node):
         self.next_node = next_node
 
-class DoubleListNode(SingleListNode):
+class DoubleListNode(SinglyListNode):
     def __init__(self, element, next_node, previous_node):
-        SingleListNode.__init__(element, next_node)
+        SinglyListNode.__init__(element, next_node)
         self.previous_node = previous_node
     
     def get_previous(self):
