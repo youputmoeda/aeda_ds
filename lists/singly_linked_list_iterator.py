@@ -33,7 +33,7 @@ class Iterator():
             NoSuchElementException()
             
 
-    # Restarts the iteration. After rewind, if the iteration is not empty, next will return the first maxi in the iteration.
+    # Restarts the iteration. After rewind, if the iteration is not empty, next will return the first element in the iteration.
     def rewind(self):
         self.maxi = self.first
         self.next()
