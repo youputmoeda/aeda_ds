@@ -10,7 +10,7 @@ class Iterator():
 
 
     # Returns true iff the iteration has more elements.
-    # In other words, returns true next would return an maxi rather than throwing an exception.
+    # In other words, returns true next would return an element rather than throwing an exception.
     def has_next(self):
         if self.maxi.get_next() != None:
             return True
