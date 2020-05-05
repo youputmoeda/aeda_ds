@@ -1,6 +1,5 @@
 import sys
 sys.path.append('..')
-from tad_iterator import *
 from exceptions import *
 
 class Iterator():
