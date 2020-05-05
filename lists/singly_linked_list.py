@@ -1,10 +1,9 @@
 from list import List
 from nodes import SingleListNode
 
-# from ..exceptions import EmptyListException
-# from exceptions import EmptyListException
-# from exceptions import InvalidPositionException
-# from exceptions import NoSuchElementException
+import sys
+sys.path.append('..')
+from exceptions import EmptyListException, InvalidPositionException, NoSuchElementException
 
 
 class singly_linked_list(List):
@@ -29,22 +28,25 @@ class singly_linked_list(List):
     # Returns the first element of the list.
     # Throws EmptyListException.
     def get_first(self):                                            # O(1)
-        if not self.head:
-            raise EmptyListException
-            # Exceptions.EmptyListException()
-            pass
-        else:
-            return self.head.get_element()
+        try:    
+            if not self.head:
+                raise Exception
+            else:
+                return self.head.get_element()
+        except:
+            EmptyListException()
 
 
     # Returns the last element of the list.
     # Throws EmptyListException.
     def get_last(self):                                             # O(1)
-        if not self.head:
-            # raise EmptyListException
-            pass
-        else:
-            return self.tail.get_element()
+        try:
+            if not self.head:
+                raise Exception
+            else:
+                return self.tail.get_element()
+        except:
+            EmptyListException()
 
 
     # Returns the element at the specified position in the list.
@@ -52,17 +54,16 @@ class singly_linked_list(List):
     def get(self, position):                                        # O(n)
         index = 0
         cur_node = self.head
-        if position < 0 or position > self.size():
-            # raise InvalidPositionException
-            pass
-        elif not self.head:
-            # raise EmptyListException
-            pass
-        else:
-            while position > index:
-                cur_node = cur_node.next_node
-                index += 1
-            return cur_node.get_element()
+        try:
+            if position < 0 or position > self.size() or not self.head:
+                raise Exception
+            else:
+                while position > index:
+                    cur_node = cur_node.next_node
+                    index += 1
+                return cur_node.get_element()
+        except:
+            InvalidPositionException()
 
 
     # Returns the position in the list of the
@@ -107,79 +108,86 @@ class singly_linked_list(List):
     # If the specified position is size(), insert corresponds to insertLast.
     # Throws InvalidPositionException.
     def insert(self, element, position): 
-        if position < 0 or position > self.size() + 1:
-            # raise InvalidPositionException
-            pass
-        elif position == 0:
-            self.insert_first(element)
-        elif position == self.num_elements:
-            self.insert_last(element)
-        else:
-            # get adress do next_node_node
-            new_node = self.head
-            index = 0
-            while new_node:
-                index += 1 
-                if index == position:
-                    new_node.next_node = SingleListNode(element, new_node.next_node)
-                    self.num_elements += 1
-                    break
-
+        try:
+            if position < 0 or position > self.size() + 1:
+                raise Exception
+            elif position == 0:
+                self.insert_first(element)
+            elif position == self.num_elements:
+                self.insert_last(element)
+            else:
+                # get adress do next_node_node
+                new_node = self.head
+                index = 0
+                while new_node:
+                    index += 1 
+                    if index == position:
+                        new_node.next_node = SingleListNode(element, new_node.next_node)
+                        self.num_elements += 1
+                        break
+        except:
+            InvalidPositionException()
 
 
     # Removes and returns the element at the first position in the list.
     # Throws EmptyListException.
     def remove_first(self):                                         # O(1)
-        if not self.head:
-            # raise EmptyListException
-            pass
-        else:
-            old_head = self.head
-            self.head = self.head.next_node
-            self.num_elements -= 1
-            return old_head.get_element()
+        try:    
+            if not self.head:
+                raise Exception
+            else:
+                old_head = self.head
+                self.head = self.head.next_node
+                self.num_elements -= 1
+                return old_head.get_element()
+        except:
+            EmptyListException()
 
 
     # Removes and returns the element at the last position in the list.
     # Throws EmptyListException.
     def remove_last(self):                                          # O(n)
-        if not self.head:
-            # raise EmptyListException
-            pass
-        else:
-            # find second last node e fazer com que esse node se torne no último elemento da minha lista
-            node_second_last = self.head
-            while node_second_last.next_node.next_node != None:
-                node_second_last = node_second_last.next_node
-            old_tail = self.tail
-            self.tail = node_second_last
-            self.tail.set_next(None)
-            self.num_elements -= 1
-            return old_tail.get_element()
-    
+        try:    
+            if not self.head:
+                raise Exception
+            else:
+                # find second last node e fazer com que esse node se torne no último elemento da minha lista
+                node_second_last = self.head
+                while node_second_last.next_node.next_node != None:
+                    node_second_last = node_second_last.next_node
+                old_tail = self.tail
+                self.tail = node_second_last
+                self.tail.set_next(None)
+                self.num_elements -= 1
+                return old_tail.get_element()
+        except:
+            EmptyListException()
+
 
     # Removes and returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
     # Throws InvalidPositionException.
     def remove(self, position): 
-        if not self.head:
-            # raise EmptyListException
-            pass
-        elif position == 0:
-            self.remove_first()
-        else:
-            node_to_remove = self.head
-            previous_node = None
-            index = 0
-            while node_to_remove:
-                if index == position-1:
-                    previous_node = node_to_remove
+        try:    
+            if not self.head:
+                raise Exception
+            elif position == 0:
+                self.remove_first()
+            else:
+                node_to_remove = self.head
+                previous_node = None
+                index = 0
+                while node_to_remove:
+                    if index == position-1:
+                        previous_node = node_to_remove
+                        node_to_remove = node_to_remove.next_node
+                        old_node = node_to_remove
+                        previous_node.set_next(node_to_remove.next_node)
+                        return old_node.get_element()
                     node_to_remove = node_to_remove.next_node
-                    old_node = node_to_remove
-                    previous_node.set_next(node_to_remove.next_node)
-                    return old_node.get_element()
-                node_to_remove = node_to_remove.next_node
-                index += 1         
+                    index += 1
+        except:
+            InvalidPositionException()
 
 
     # Removes all elements from the list.
@@ -215,12 +223,12 @@ llist.insert_first('C')
 llist.insert_first('A')
 
 # inserir elementos no fim da lista:
-llist.insert_last('D')
+# llist.insert_last('D')
 
 # inserir elementos numa posição expecífica da lista:
-llist.insert('B', 1)
-llist.insert('E', 4)
-llist.insert('W', 9)
+# llist.insert('B', 1)
+# llist.insert('E', 4)
+# llist.insert('W', 9)
 
 # check size:
 # print(f'Tamanho: {llist.size()}')
@@ -232,37 +240,37 @@ llist.insert('W', 9)
 # print(f'Último elemento: {llist.get_last()}')
 
 # imprimir a lista
-llist.print_it()
+# llist.print_it()
 
 # get the element of the position of the list:
-print(f'position: 1, element: {llist.get(1)}')
-print(f'position: 2, element: {llist.get(2)}')
-print(f'position: 0, element: {llist.get(0)}')
+# print(f'position: 1, element: {llist.get(1)}')
+# print(f'position: 2, element: {llist.get(2)}')
+# print(f'position: 0, element: {llist.get(0)}')
 
 # find elements in the list:
-print(f'elemento: A, position: {llist.find("A")}')
-print(f'elemento: B, position: {llist.find("B")}')
-print(f'elemento: C, position: {llist.find("C")}')
-print(f'elemento: W, position: {llist.find("W")}')
+# print(f'elemento: A, position: {llist.find("A")}')
+# print(f'elemento: B, position: {llist.find("B")}')
+# print(f'elemento: C, position: {llist.find("C")}')
+# print(f'elemento: W, position: {llist.find("W")}')
 
 
 # imprimir a lista
 llist.print_it()
 
 # remove the first element of the list:
-print(f'Primeiro elemento foi removido: {llist.remove_first()}')
+# print(f'Primeiro elemento foi removido: {llist.remove_first()}')
 
 # remove last element of the list:
-print(f'Último elemento foi removido: {llist.remove_last()}')
+# print(f'Último elemento foi removido: {llist.remove_last()}')
 
 # remove o elemento que está na posicao indicada:
-print(f'Elemento 0 foi removido: {llist.remove(1)}')   
+# print(f'Elemento 0 foi removido: {llist.remove(1)}')   
 
 # imprimir a lista
-llist.print_it()
+# llist.print_it()
 
 # Make list empty:
-llist.make_empty()
+# llist.make_empty()
 
 # check if list is empty:
-print(llist.is_empty())
+# print(llist.is_empty())
