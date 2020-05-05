@@ -181,9 +181,6 @@ class singly_linked_list(List):
 
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self):
-        # node = self.head
-        # iterator = slli.Iterator(node)
-        # return iterator
         iterator = slli.Iterator(self.head)
         for _ in range(self.size()):
             return iterator.next()

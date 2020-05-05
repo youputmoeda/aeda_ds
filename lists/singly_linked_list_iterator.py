@@ -20,15 +20,15 @@ class Iterator():
     def __iter__(self):
         return self
 
-    # Returns the next maxi in the iteration.
+    # Returns the next element in the iteration.
     # Throws NoSuchElementException
     def next(self):
         try:    
-            if self.has_next() is None:
+            if self.has_next() is False:
                 raise Exception
             else: 
                 elem = self.maxi.get_element()
-                self.maxi = self.maxi.get_next()
+                self.maxi.get_next()
                 return elem
         except:
             NoSuchElementException()
@@ -37,4 +37,5 @@ class Iterator():
     # Restarts the iteration. After rewind, if the iteration is not empty, next will return the first maxi in the iteration.
     def rewind(self):
         self.maxi = self.first
+        self.next()
     
