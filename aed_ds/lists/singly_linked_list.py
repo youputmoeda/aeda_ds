@@ -1,5 +1,5 @@
-from list import List
-from nodes import SingleListNode
+from .tad_list import List
+from .nodes import SingleListNode
 from ..exceptions import EmptyListException, InvalidPositionException, NoSuchElementException
 
 class SinglyLinkedList(List):
@@ -38,8 +38,10 @@ class SinglyLinkedList(List):
     def get(self, position):                                        # O(n)
         index = 0
         cur_node = self.head
-        if position < 0 or position > self.size() or not self.head:
+        if position < 0 or position > self.size():
             raise InvalidPositionException()
+        elif not self.head:
+            raise EmptyListException()
         else:
             while position > index:
                 cur_node = cur_node.next_node
@@ -132,8 +134,10 @@ class SinglyLinkedList(List):
     # Range of valid positions: 0, ..., size()-1.
     # Throws InvalidPositionException.
     def remove(self, position): 
-        if not self.head:
-            raise InvalidPositionException()
+        if position < 0 or position > self.size() or not self.head:
+            raise InvalidPositionException()        
+        # if not self.head:
+        #     raise EmptyListException()
         elif position == 0:
             self.remove_first()
         else:
