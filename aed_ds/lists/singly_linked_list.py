@@ -1,12 +1,8 @@
 from list import List
 from nodes import SingleListNode
+from ..exceptions import EmptyListException, InvalidPositionException, NoSuchElementException
 
-import sys
-sys.path.append('..')
-from exceptions import EmptyListException, InvalidPositionException, NoSuchElementException
-
-
-class singly_linked_list(List):
+class SinglyLinkedList(List):
     
     def __init__(self):
         self.head = None
@@ -200,77 +196,3 @@ class singly_linked_list(List):
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self): pass
 
-
-
-
-    def print_it(self):
-        cur_node = self.head
-        if self.head:
-            print(f'Head: {self.head.get_element()}')
-            print(f'Tail: {self.tail.get_element()}')
-        while cur_node:
-            print(cur_node.get_element())
-            cur_node = cur_node.next_node
-
-
-
-
-# criar a lista:
-llist = singly_linked_list()
-
-# inserir elementos no inicio da lista:
-llist.insert_first('C')
-llist.insert_first('A')
-
-# inserir elementos no fim da lista:
-# llist.insert_last('D')
-
-# inserir elementos numa posição expecífica da lista:
-# llist.insert('B', 1)
-# llist.insert('E', 4)
-# llist.insert('W', 9)
-
-# check size:
-# print(f'Tamanho: {llist.size()}')
-
-# get the first element of the list:
-# print(f'Primeiro elemento: {llist.get_first()}')
-
-# get the last element of the list:
-# print(f'Último elemento: {llist.get_last()}')
-
-# imprimir a lista
-# llist.print_it()
-
-# get the element of the position of the list:
-# print(f'position: 1, element: {llist.get(1)}')
-# print(f'position: 2, element: {llist.get(2)}')
-# print(f'position: 0, element: {llist.get(0)}')
-
-# find elements in the list:
-# print(f'elemento: A, position: {llist.find("A")}')
-# print(f'elemento: B, position: {llist.find("B")}')
-# print(f'elemento: C, position: {llist.find("C")}')
-# print(f'elemento: W, position: {llist.find("W")}')
-
-
-# imprimir a lista
-llist.print_it()
-
-# remove the first element of the list:
-# print(f'Primeiro elemento foi removido: {llist.remove_first()}')
-
-# remove last element of the list:
-# print(f'Último elemento foi removido: {llist.remove_last()}')
-
-# remove o elemento que está na posicao indicada:
-# print(f'Elemento 0 foi removido: {llist.remove(1)}')   
-
-# imprimir a lista
-# llist.print_it()
-
-# Make list empty:
-# llist.make_empty()
-
-# check if list is empty:
-# print(llist.is_empty())
