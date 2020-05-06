@@ -1,9 +1,15 @@
+from ..exception import *
+from ..tad_iterator import Iterator
 
 class SinglyLinkedListIterator(Iterator):
     
+    def __init__(self):
+        self.element = element
+
     # Returns true iff the iteration has more elements.
     # In other words, returns true next would return an element rather than throwing an exception.
-    def has_next(self): pass
+    def has_next(self): 
+        return self.element != None
 
     # Returns the next element in the iteration.
     # Throws NoSuchElementException
