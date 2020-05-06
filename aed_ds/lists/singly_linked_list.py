@@ -1,6 +1,6 @@
 from .tad_list import List
 from .nodes import SingleListNode
-from ..exceptions import EmptyListException, InvalidPositionException, NoSuchElementException
+from ..exceptions import EmptyListException, InvalidPositionException
 
 class SinglyLinkedList(List):
     
@@ -112,17 +112,19 @@ class SinglyLinkedList(List):
         else:
             old_head = self.head
             self.head = self.head.next_node
-            self.num_elements -= 1
+        self.num_elements -= 1
+        return old_head.get_element()
 
     # Removes and returns the element at the last position in the list.
     # Throws EmptyListException.
     def remove_last(self):                                          # O(n)
+        node_second_last = self.head        
         if not self.head:
             raise EmptyListException()
+        elif not node_second_last.next_node:
+            self.remove_first()
         else:
-            # find second last node e fazer com que esse node se torne no último elemento da minha lista
-            node_second_last = self.head
-            while node_second_last.next_node.next_node != None:
+            while node_second_last.next_node.next_node:
                 node_second_last = node_second_last.next_node
             old_tail = self.tail
             self.tail = node_second_last
@@ -134,12 +136,12 @@ class SinglyLinkedList(List):
     # Range of valid positions: 0, ..., size()-1.
     # Throws InvalidPositionException.
     def remove(self, position): 
-        if position < 0 or position > self.size() or not self.head:
-            raise InvalidPositionException()        
-        # if not self.head:
-        #     raise EmptyListException()
+        if position < 0 or position > self.size() or self.num_elements == 0:
+            raise InvalidPositionException()
         elif position == 0:
             self.remove_first()
+        elif position == self.num_elements:
+            self.remove_last()
         else:
             node_to_remove = self.head
             previous_node = None
