@@ -1,14 +1,14 @@
-from list import List
-from nodes import SinglyListNode
-import singly_linked_list_iterator as slli
+from .tad_list import List
+from .nodes import SinglyListNode
+from .singly_linked_list_iterator import SinglyLinkedListIterator
 
 import sys
 sys.path.append('..')
 
-from exceptions import *
+from ..exceptions import *
 
 
-class singly_linked_list(List):
+class SinglyLinkedList(List):
    
     def __init__(self):
         self.head = None
@@ -34,7 +34,7 @@ class singly_linked_list(List):
             else:
                 return self.head.get_element()
         except:
-            EmptyListException()
+            raise EmptyListException()
 
     # Returns the last element of the list.
     # Throws EmptyListException.
@@ -45,7 +45,7 @@ class singly_linked_list(List):
             else:
                 return self.tail.get_element()
         except:
-            EmptyListException()
+            raise EmptyListException()
     
     # Returns the element at the specified position in the list.
     # Range of valid positions: 0, ..., size()-1.
@@ -60,7 +60,7 @@ class singly_linked_list(List):
                 aux += 1
             return node_to_iterate.get_element()
         except:
-            InvalidPositionException()
+            raise InvalidPositionException()
 
     # Returns the position in the list of the
     # first occurrence of the specified element,
@@ -140,7 +140,7 @@ class singly_linked_list(List):
         else:
             # find second last node e fazer com que esse node se torne no último elemento da minha lista
             node_second_last = self.head
-            while node_second_last.next_node.next_node != None:
+            while node_second_last.next_node.next_node is not None:
                 node_second_last = node_second_last.next_node
             old_tail = self.tail
             self.tail = node_second_last
@@ -153,6 +153,8 @@ class singly_linked_list(List):
     # Throws InvalidPositionException.
     def remove(self, position):
         number = 0
+        if self.is_empty():
+            raise EmptyListException()
         try:
             if position < 0 or position>=self.size():
                 raise Exception
@@ -170,7 +172,7 @@ class singly_linked_list(List):
                         node_to_iterate = node_to_iterate.next_node
                         number += 1
         except:
-            InvalidPositionException()
+            raise InvalidPositionException()
                         
  
     # # Removes all elements from the list.
@@ -181,7 +183,7 @@ class singly_linked_list(List):
 
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self):
-        iterator = slli.Iterator(self.head)
+        iterator = SinglyLinkedListIterator(self.head)
         for _ in range(self.size()):
             return iterator.next()
 
@@ -194,59 +196,59 @@ class singly_linked_list(List):
             current_node = current_node.next_node
             
 # criar a lista:
-llist = singly_linked_list()
+#llist = singly_linked_list()
 #print(llist.get_first())
 # inserir elementos no inicio da lista:
-llist.insert_first('C')
-llist.insert_first('A')
+#llist.insert_first('C')
+#llist.insert_first('A')
 # inserir elementos no fim da lista:
-llist.insert_last('D')
+# llist.insert_last('D')
 # inserir elementos numa posição expecífica da lista:
-llist.insert('B', 1)
-llist.insert('E', 4)
+# llist.insert('B', 1)
+# llist.insert('E', 4)
 #print(f'position: {1}, element: {llist.get(45)}')
 #llist.insert('W', 9)
 # imprimir a lista
-llist.print_list()
-print('=' * 30)
+# llist.print_list()
+# print('=' * 30)
 # check size:
-print(llist.size())
-print('=' * 30)
+# print(llist.size())
+# print('=' * 30)
 # iterator
-print(llist.iterator())
-print('=' * 30)
+# print(llist.iterator())
+# print('=' * 30)
 # get the first element of the list:
-print(llist.get_first())
+# print(llist.get_first())
 # get the last element of the list:
-print(llist.get_last())
-print('=' * 30)
+# print(llist.get_last())
+# print('=' * 30)
 # get the element of the position of the list:
-print(f'position: {1}, element: {llist.get(45)}')
-print(f'position: {2}, element: {llist.get(2)}')
-print(f'position: {0}, element: {llist.get(0)}')
-print('=' * 30)
+# print(f'position: {1}, element: {llist.get(45)}')
+# print(f'position: {2}, element: {llist.get(2)}')
+# print(f'position: {0}, element: {llist.get(0)}')
+# print('=' * 30)
 #find elements in the list:
-print(llist.find('A'))
-print(llist.find('B'))
-print(llist.find('C'))
-print(llist.find('W'))
-print('=' * 30)
+# print(llist.find('A'))
+# print(llist.find('B'))
+# print(llist.find('C'))
+# print(llist.find('W'))
+# print('=' * 30)
 # imprimir a lista
 #llist.print_list()
 # remove the first element of the list:
-print(f'Primeiro elemento foi removido: {llist.remove_first()}')
+# print(f'Primeiro elemento foi removido: {llist.remove_first()}')
 #remove last element of the list:
-print(f'Último elemento foi removido: {llist.remove_last()}')
-print('=' * 30)
+# print(f'Último elemento foi removido: {llist.remove_last()}')
+# print('=' * 30)
 # Imprimir a lista
-llist.print_list()
-print('=' * 30)
+# llist.print_list()
+# print('=' * 30)
 
 # remove o elemento que está na posicao indicada:
-print(f'Elemento removido: {llist.remove(3)}')   
-print(f'Elemento removido: {llist.remove(1)}')  
-print('=' * 30) 
+# print(f'Elemento removido: {llist.remove(3)}')   
+# print(f'Elemento removido: {llist.remove(1)}')  
+# print('=' * 30) 
 
 # imprimir a lista
-llist.print_list()
+# llist.print_list()
 

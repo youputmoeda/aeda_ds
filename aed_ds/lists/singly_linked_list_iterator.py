@@ -1,8 +1,9 @@
 import sys
 sys.path.append('..')
-from exceptions import *
+from ..exceptions import *
+from ..tad_iterator import Iterator
 
-class Iterator():
+class SinglyLinkedListIterator(Iterator):
     
     def __init__(self, maxi):
         self.maxi = maxi
