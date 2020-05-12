@@ -19,7 +19,7 @@ class DoublyLinkedList(List):
 
     # Returns the first element of the list.
     # Throws EmptyListException.
-    def get_first(self): 
+    def get_first(self): pass
         
 
     # Returns the last element of the list.
@@ -37,7 +37,13 @@ class DoublyLinkedList(List):
     def find(self, element): pass
 
     # Inserts the specified element at the first position in the list.
-    def insert_first(self, element): pass
+    def insert_first(self, element): 
+        new_node = DoubleListNode(element, self.head, None)
+        if not self.head:
+            self.tail = new_node
+        self.head = new_node
+        num_elements += 1
+        
 
     # Inserts the specified element at the last position in the list.
     def insert_last(self, element): pass
@@ -67,3 +73,14 @@ class DoublyLinkedList(List):
 
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self): pass
+
+
+    def print_it(self):
+        cur_node = self.head
+        idx = 0
+        if not self.is_empty():
+            print(f'Head: {self.head}')
+            print(f'Tail: {self.tail}')
+        while cur_node:
+            print(cur_node.get_element())
+            cur_node = cur_node.get_next()
