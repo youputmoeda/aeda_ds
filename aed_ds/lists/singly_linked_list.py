@@ -1,6 +1,7 @@
 from .tad_list import List
 from .nodes import SingleListNode
 from ..exceptions import EmptyListException, InvalidPositionException
+from .singly_linked_list_iterator import SinglyLinkedListIterator
 
 class SinglyLinkedList(list):
 
@@ -138,17 +139,5 @@ class SinglyLinkedList(list):
         self.tail = None
         self.num_elements = 0    
 
-    def iterator(self): pass
-
-    def print_it(self):
-        cur_node =self.head
-        if self.head:
-            print(f'Head: {self.head.get_element()}')
-            print(f'Tail: {self.tail.get_element()}')
-        else:
-            print('List is empty!')
-        while cur_node:
-            print(cur_node)
-            print(cur_node.get_element())
-            cur_node = cur_node.get_next()
-            
+    def iterator(self):
+        return SinglyLinkedListIterator(self)
