@@ -3,7 +3,7 @@ from .nodes import SingleListNode
 from ..exceptions import EmptyListException, InvalidPositionException
 from .singly_linked_list_iterator import SinglyLinkedListIterator
 
-class SinglyLinkedList(list):
+class SinglyLinkedList(List):
 
     def __init__(self):
         self.head = None
