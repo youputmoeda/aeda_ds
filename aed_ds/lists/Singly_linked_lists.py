@@ -154,5 +154,5 @@ class SinglyLinkedList(List):
 
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self):
-        return SinglyLinkedList
+        return SinglyLinkedList()   
         
