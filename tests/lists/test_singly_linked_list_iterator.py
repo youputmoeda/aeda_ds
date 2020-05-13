@@ -1,7 +1,6 @@
 import unittest
 
 from aed_ds.lists.singly_linked_list import SinglyLinkedList
-from aed_ds.lists.tad_list import List
 from aed_ds.exceptions import NoSuchElementException
 
 class TestSinglyLinkedListIterator(unittest.TestCase):
