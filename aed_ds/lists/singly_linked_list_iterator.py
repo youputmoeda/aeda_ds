@@ -1,7 +1,7 @@
-from aed_ds import tad_iterator
+from ..tad_iterator import Iterator
 from aed_ds.exceptions import EmptyListException, NoSuchElementException
 
-class SinglyLinkedListIterator:
+class SinglyLinkedListIterator(Iterator):
     def __init__(self, head):
         self.head = head
         self.current = head
