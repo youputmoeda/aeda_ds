@@ -1,86 +1,118 @@
-from .tad_list import List
+from .singly_linked_list import SinglyLinkedList
 from .nodes import DoubleListNode
-from ..exceptions import EmptyListException, InvalidPositionException
+from .double_linked_list_iterator import DoublyLinkedListIterator
+from ..exceptions import EmptyListException, NoSuchElementException, InvalidPositionException
 
-class DoublyLinkedList(List):
-    
+class DoublyLinkedList(SinglyLinkedList):
     def __init__(self):
-        self.head = None
-        self.tail = None
-        self.num_elements = 0
+        SinglyLinkedList.__init__(self)
+        self.previous = None
 
-    # Returns true iff the list contains no elements.
-    def is_empty(self): 
-        return self.num_elements == 0
+    def get_previous(self):
+        return self.previous
 
-    # Returns the number of elements in the list.
-    def size(self): 
-        return self.num_elements
+    def set_previous(self, previous):
+        self.previous = previous
 
-    # Returns the first element of the list.
-    # Throws EmptyListException.
-    def get_first(self): pass
-        
+    def insert_first(self, element):
+        node = DoubleListNode(element, self.head, None)
+        self.head = node
+        self.num_elements += 1
+        if self.tail is None:
+            node_tail = DoubleListNode(element, None, self.head)
+            self.tail = node_tail
 
-    # Returns the last element of the list.
-    # Throws EmptyListException.
-    def get_last(self): pass
+    def insert_last(self, element):
+        if self.num_elements == 0:
+            node = DoubleListNode(element, None, self.head)
+            self.tail = node
+            node_head = DoubleListNode(element, self.tail, None)
+            self.head = node_head
+            self.num_elements += 1
+        else:
+            previous = self.tail
+            node = DoubleListNode(element, None, previous)
+            self.tail = node
+            self.num_elements += 1
+            previous.set_next(self.tail) 
 
-    # Returns the element at the specified position in the list.
-    # Range of valid positions: 0, ..., size()-1.
-    def get(self, position): pass
+    def insert(self, element, position):
+        if position > self.num_elements or position < self.num_elements:
+            raise InvalidPositionException()
+        else: 
+            if position == 0:
+                self.insert_first(element)
+            elif position == self.size():
+                self.insert_last(element)
+            else:
+                current = self.head
+                index = 0
+                while True:
+                    if index == position:
+                        previous = current.get_previous()
+                        node = DoubleListNode(element, current, previous)
+                        previous.set_next(node)
+                        current.set_previous(node)
+                        break
+                    current = current.get_next()
+                    index += 1
 
-    # Returns the position in the list of the
-    # first occurrence of the specified element,
-    # or -1 if the specified element does not
-    # occur in the list.
-    def find(self, element): pass
+                self.num_elements += 1
 
-    # Inserts the specified element at the first position in the list.
-    def insert_first(self, element): 
-        new_node = DoubleListNode(element, self.head, None)
-        if not self.head:
-            self.tail = new_node
-        self.head = new_node
-        num_elements += 1
-        
+    def remove_first(self):
+        if self.num_elements == 1:
+            self.head = None
+            self.tail = None
+            self.num_elements = 0
+            return None
+        elif self.num_elements == 0:
+            return EmptyListException()
+        else:
+            temp = self.head
+            temp = self.head.get_next()
+            self.head = temp
+            self.head.set_previous(None)
+            self.num_elements -= 1
+            return temp.get_element()
 
-    # Inserts the specified element at the last position in the list.
-    def insert_last(self, element): pass
+    def remove_last(self):
+        if self.num_elements == 1:
+            self.head = None
+            self.tail = None
+            self.num_elements = 0
+            return None
+        elif self.num_elements == 0:
+            raise EmptyListException()
+        else:
+            var = self.tail.get_previous()
+            self.tail = var
+            self.tail.set_next(None)
+            self.num_elements -= 1
+            return self.tail.get_element()
 
-    # Inserts the specified element at the specified position in the list.
-    # Range of valid positions: 0, ..., size().
-    # If the specified position is 0, insert corresponds to insertFirst.
-    # If the specified position is size(), insert corresponds to insertLast.
-    # Throws InvalidPositionException.
-    def insert(self, element, position): pass
+    def remove(self, position):
+        if position < 0 and position >= self.size():
+            raise InvalidPositionException()
+        else:
+            if position == 0:
+                self.remove_first()
+            elif position == self.size()-1:
+                self.remove_last()
+            else:
+                current = self.head
+                index = 0
+                while True:
+                    if index == position:
+                        temp = current.get_next()
+                        temp_previous = current.get_previous()
+                        temp.set_previous(temp_previous)
+                        temp_previous.set_next(temp)
+                        self.num_elements -= 1
+                        return temp.get_element()
 
-    # Removes and returns the element at the first position in the list.
-    # Throws EmptyListException.
-    def remove_first(self): pass
+                    current = current.get_next()
+                    index += 1
 
-    # Removes and returns the element at the last position in the list.
-    # Throws EmptyListException.
-    def remove_last(self): pass
-    
-    # Removes and returns the element at the specified position in the list.
-    # Range of valid positions: 0, ..., size()-1.
-    # Throws InvalidPositionException.
-    def remove(self, position): pass
-    
-    # Removes all elements from the list.
-    def make_empty(self): pass
-
-    # Returns an iterator of the elements in the list (in proper sequence).
-    def iterator(self): pass
-
-
-    def print_it(self):
-        cur_node = self.head
-        idx = 0
-        if not self.is_empty():
-            print(f'Head: {self.head}')
-            print(f'Tail: {self.tail}')
-        while cur_node:
-            print(cur_node.get_element())
-            cur_node = cur_node.get_next()
+    def iterator(self):
+        return DoublyLinkedListIterator(self)
+                
