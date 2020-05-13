@@ -1,11 +1,11 @@
 from .tad_list import List
 from .nodes import SingleListNode
 from .singly_linked_list_iterator import SinglyLinkedListIterator
-from ..exceptions import EmptyListException, InvalidPositionException
-from .singly_linked_list_iterator import SinglyLinkedListIterator
+from ..exceptions import EmptyListException, InvalidPositionException, NoSuchElementException
+
 
 class SinglyLinkedList(List):
-
+    
     def __init__(self):
         self.head = None
         self.tail = None
@@ -142,3 +142,4 @@ class SinglyLinkedList(List):
 
     def iterator(self):
         return SinglyLinkedListIterator(self)
+

@@ -6,7 +6,15 @@ from aed_ds.exceptions import NoSuchElementException
 class TestDoublyLinkedListIterator(unittest.TestCase):
     def setUp(self): pass
 
-    # def test_has_next(self): pass
+    def test_has_next(self):
+        """ doubly_linked_list = DoublyLinkedList
+        it = doubly_linked_list.iterator()
+        self.assertFalse(it.has_next())
+        doubly_linked_list.insert_last("element 1")
+        doubly_linked_list.insert_last("element 2")
+        doubly_linked_list.insert_last("element 3")
+        self.assertTrue(it.has_next()) """
+        
 
     # def test_next(self): pass
 
