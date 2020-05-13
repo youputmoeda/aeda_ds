@@ -140,23 +140,5 @@ class SinglyLinkedList(list):
         self.tail = None
         self.num_elements = 0    
 
-<<<<<<< HEAD
-    def iterator(self): 
-        return SinglyLinkedListIterator(self.head)
-
-    def print_it(self):
-        cur_node =self.head
-        if self.head:
-            print(f'Head: {self.head.get_element()}')
-            print(f'Tail: {self.tail.get_element()}')
-        else:
-            print('List is empty!')
-        while cur_node:
-            print(cur_node)
-            print(cur_node.get_element())
-            cur_node = cur_node.get_next()
-            
-=======
     def iterator(self):
         return SinglyLinkedListIterator(self)
->>>>>>> upstream/develop
