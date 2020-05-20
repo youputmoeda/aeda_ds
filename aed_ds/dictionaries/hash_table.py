@@ -3,6 +3,9 @@ from ..exceptions import NoSuchElementException, DuplicatedKeyException
 from ..lists.singly_linked_list import SinglyLinkedList
 
 class HashTable(Dictionary):
+    def __init__(self, size=101):
+        pass
+
     def size(self): pass
 
     def is_full(self): pass
