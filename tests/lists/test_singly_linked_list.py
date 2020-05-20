@@ -92,8 +92,7 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.assertEqual(self.list.get_first(), "element 2")
     
     def test_remove_first_single_element(self):
-        self.list.make_empty()
-        self.add_elements(1)
+        self.add_elements(1) # adiciona 'element 1'
         self.assertEqual(self.list.remove_first(), "element 1")
 
         with self.assertRaises(EmptyListException):
@@ -123,6 +122,10 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.add_elements(5)
         self.list.remove_last()
         self.assertEqual(self.list.get_last(), "element 4")
+    
+    def test_remove_last_two_elements(self):
+        self.add_elements(2)
+        self.assertEqual(self.list.remove_last(), "element 2")
 
     def test_remove_last_single_element(self):
         self.list.make_empty()
