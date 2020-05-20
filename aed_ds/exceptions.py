@@ -1,5 +1,5 @@
 class EmptyListException(Exception):
-    pass
+    pass 
 
 class InvalidPositionException(Exception):
     pass
